@@ -1,0 +1,4 @@
+CopyBase
+========
+
+Clipboard history browser
