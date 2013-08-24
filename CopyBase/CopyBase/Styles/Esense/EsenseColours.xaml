@@ -1,0 +1,100 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Background-->
+    <SolidColorBrush x:Key="Background"
+                     Color="#1C1C1C" />
+    <SolidColorBrush x:Key="LightBackground"
+                     Color="#2D2D30" />
+
+    <!--Foreground-->
+    <SolidColorBrush x:Key="Foreground"
+                     Color="#000000" />
+    <SolidColorBrush x:Key="ForegroundSelected"
+                     Color="#FFFFFF" />
+
+    <!--General-->
+    <SolidColorBrush x:Key="BackgroundHighlighted"
+                     Color="#54545C" />
+    <SolidColorBrush x:Key="BorderBrushHighlighted"
+                     Color="#6A6A75" />
+    <SolidColorBrush x:Key="BackgroundSelected"
+                     Color="#007ACC" />
+    <SolidColorBrush x:Key="BorderBrushSelected"
+                     Color="#1C97EA" />
+    <SolidColorBrush x:Key="BackgroundNormal"
+                     Color="#3F3F46" />
+    <SolidColorBrush x:Key="BorderBrushNormal"
+                     Color="#54545C" />
+
+    <!--Search Text Box-->
+    <SolidColorBrush x:Key="SearchTextForeground"
+                     Color="#999999" />
+
+    <!--Link Button-->
+    <SolidColorBrush x:Key="LinkButtonForeground"
+                     Color="#1297FB" />
+    <SolidColorBrush x:Key="LinkButtonForegroundHighlighted"
+                     Color="#55AAFF" />
+
+    <!--Close Button-->
+    <SolidColorBrush x:Key="CloseButtonBackgroundHighlighted"
+                     Color="#39ADFB" />
+    <SolidColorBrush x:Key="CloseButtonBackgroundPressed"
+                     Color="#084E7D" />
+    <SolidColorBrush x:Key="CloseButtonStroke"
+                     Color="#AAFFFFFF" />
+    <SolidColorBrush x:Key="CloseButtonStrokeHighlighted"
+                     Color="#FFFFFF" />
+
+    <!--Menu-->
+    <SolidColorBrush x:Key="MenuSeparatorBorderBrush"
+                     Color="#333337" />
+    <SolidColorBrush x:Key="MenuItemHighlightedBackground"
+                     Color="#3E3E40" />
+    <SolidColorBrush x:Key="SubmenuItemBackground"
+                     Color="#1B1B1C" />
+    <SolidColorBrush x:Key="SubmenuItemBackgroundHighlighted"
+                     Color="#333334" />
+    <SolidColorBrush x:Key="MenuDisabledForeground"
+                     Color="#656565" />
+
+    <!--eSense Menu-->
+    <SolidColorBrush x:Key="MenuPopupBrush"
+                     Color="Gray" />
+
+    <!--eSense LinkListBox-->
+    <SolidColorBrush x:Key="LinkListForeground"
+                     Color="#000000" />
+    <SolidColorBrush x:Key="LinkListForegroundSelected"
+                     Color="#FFFFFF" />
+    <SolidColorBrush x:Key="LinkListBackgroundSelected"
+                     Color="#1C97EA" />
+
+    <!--eSense TextBox-->
+    <SolidColorBrush x:Key="TextBoxForeground"
+                     Color="Black" />
+    <SolidColorBrush x:Key="TextBoxBackground"
+                     Color="White" />
+    <SolidColorBrush x:Key="TextBoxBackgroundSelected"
+                     Color="White" />
+    <SolidColorBrush x:Key="TextBoxBorderBrush"
+                     Color="White" />
+    <SolidColorBrush x:Key="TextBoxBorderSelected"
+                     Color="#39ADFB" />
+    <SolidColorBrush x:Key="WatermarkForeground"
+                     Color="#FFe3e3e3" />
+    <SolidColorBrush x:Key="WatermarkForegroundSelected"
+                     Color="#FFf1f1f1" />
+    <FontFamily x:Key="TextBoxFontFamily">Segoe UI</FontFamily>
+    <FontWeight x:Key="TextBoxFontWeight">SemiBold</FontWeight>
+
+    <!--eSense KBListBox-->
+    <SolidColorBrush x:Key="KBListBoxForeground"
+                     Color="White" />
+    <SolidColorBrush x:Key="KBListBoxForegroundSelected"
+                     Color="White" />
+
+    <!--Scroll Bar-->
+    <SolidColorBrush x:Key="ScrollBarPageButtonBackgroundHighlighted"
+                     Color="#05FFFFFF" />
+</ResourceDictionary>

@@ -1,0 +1,54 @@
+﻿<Window x:Class="CopyBase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        Title="MainWindow"
+        BorderThickness="1"
+        BorderBrush="Black"
+        WindowStartupLocation="Manual"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        SizeToContent="Height"
+        Width="300"
+        Icon="Main.ico"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        SourceInitialized="Window_SourceInitialized">
+    <i:Interaction.Behaviors>
+        <Behaviours:BorderlessWindowBehavior />
+        <Behaviours:DragWindowBehavior />
+    </i:Interaction.Behaviors>
+    <DockPanel>
+        <Frame Name="FrameMain">
+            <Frame.Template>
+                <ControlTemplate TargetType="Frame">
+                    <DockPanel Margin="0">
+                        <StackPanel Visibility="Hidden"
+                                    Margin="0"
+                                    Orientation="Horizontal"
+                                    DockPanel.Dock="Top">
+                            <!--<Button
+                        Content="Avast! Go back!" 
+                        Command="{x:Static NavigationCommands.BrowseBack}" 
+                        IsEnabled="{TemplateBinding CanGoBack}" 
+                        />
+                    <Button 
+                        Content="Forward you dogs!" 
+                        Command="{x:Static NavigationCommands.BrowseForward}" 
+                        IsEnabled="{TemplateBinding CanGoForward}" 
+                        />-->
+                        </StackPanel>
+
+                        <Border>
+                            <ContentPresenter />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+
+            </Frame.Template>
+        </Frame>
+    </DockPanel>
+</Window>
