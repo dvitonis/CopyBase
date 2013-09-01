@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
-        Title="MainWindow"
+        Title="CopyBase"
         BorderThickness="1"
-        BorderBrush="Black"
+        BorderBrush="#3F3F46"
         WindowStartupLocation="Manual"
-        Background="{x:Null}"
         AllowsTransparency="True"
         WindowStyle="None"
         SizeToContent="Height"
@@ -30,16 +29,6 @@
                                     Margin="0"
                                     Orientation="Horizontal"
                                     DockPanel.Dock="Top">
-                            <!--<Button
-                        Content="Avast! Go back!" 
-                        Command="{x:Static NavigationCommands.BrowseBack}" 
-                        IsEnabled="{TemplateBinding CanGoBack}" 
-                        />
-                    <Button 
-                        Content="Forward you dogs!" 
-                        Command="{x:Static NavigationCommands.BrowseForward}" 
-                        IsEnabled="{TemplateBinding CanGoForward}" 
-                        />-->
                         </StackPanel>
 
                         <Border>

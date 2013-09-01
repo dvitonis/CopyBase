@@ -1,0 +1,16 @@
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\bin\Debug\UITests.exe
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\bin\Debug\UITests.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\bin\Debug\CopyBase.exe
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\bin\Debug\UIControls.dll
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\bin\Debug\CopyBase.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\bin\Debug\UIControls.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests.csprojResolveAssemblyReference.cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\MainWindow.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\MainWindow.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\App.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests_MarkupCompile.cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests.g.resources
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests.Properties.Resources.resources
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests.csproj.GenerateResource.Cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests.exe
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UITests\obj\Debug\UITests.pdb

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CopyBase.DataTier;
+using UIControls;
 
 namespace CopyBase.Forms.Views
 {
@@ -29,6 +30,7 @@ namespace CopyBase.Forms.Views
             InitializeComponent();
             ViewModel = (MainPageViewModel)this.GridMain.DataContext;
 
+            StaticUICommands.OnDelete += ViewModel.DeleteItem;
             ListBoxCopyItems.AddHandler(UIElement.MouseDownEvent, new MouseButtonEventHandler(ListBoxCopyItems_MouseDown), true);
         }
 

@@ -1,0 +1,16 @@
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\bin\Release\UIControls.dll
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\bin\Release\UIControls.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Styles\AllResources.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Styles\Buttons\CBButtons.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Styles\Buttons\WindowCommands\WindowCommands.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Styles\ListBox.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Styles\Buttons\CBButtons.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls_MarkupCompile.cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls_MarkupCompile.lref
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Themes\Generic.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.g.resources
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.Properties.Resources.resources
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.csproj.GenerateResource.Cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.dll
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.pdb

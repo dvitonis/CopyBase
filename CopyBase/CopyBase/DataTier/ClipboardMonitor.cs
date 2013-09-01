@@ -29,7 +29,24 @@ namespace CopyBase.DataTier
 
         public static void AddToClipboard(CopyItem item)
         {
-            Clipboard.SetText(item.Data);
+            try
+            {
+                Clipboard.SetText(item.Data);
+
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    System.Threading.Thread.Sleep(100);
+                    Clipboard.SetText(item.Data);
+
+                }
+                catch (Exception)
+                {
+                    // Ignore
+                }
+            }
         }
 
         class ClipboardWatcher : Form
@@ -123,26 +140,33 @@ namespace CopyBase.DataTier
 
             private void ClipChanged()
             {
-                IDataObject iData = Clipboard.GetDataObject();
-
-                ClipboardFormat? format = null;
-
-                foreach (var f in formats)
+                try
                 {
-                    if (iData.GetDataPresent(f))
+                    IDataObject iData = Clipboard.GetDataObject();
+
+                    ClipboardFormat? format = null;
+
+                    foreach (var f in formats)
                     {
-                        format = (ClipboardFormat)Enum.Parse(typeof(ClipboardFormat), f);
-                        break;
+                        if (iData.GetDataPresent(f))
+                        {
+                            format = (ClipboardFormat)Enum.Parse(typeof(ClipboardFormat), f);
+                            break;
+                        }
                     }
+
+                    object data = iData.GetData(format.ToString());
+
+                    if (data == null || format == null)
+                        return;
+
+                    if (OnClipboardChange != null)
+                        OnClipboardChange((ClipboardFormat)format, data);
                 }
-
-                object data = iData.GetData(format.ToString());
-
-                if (data == null || format == null)
-                    return;
-
-                if (OnClipboardChange != null)
-                    OnClipboardChange((ClipboardFormat)format, data);
+                catch (Exception)
+                {
+                    //TODO
+                }
             }
 
 

@@ -96,17 +96,21 @@ namespace CopyBase.Forms.ViewModels
         {
             try
             {
-                if (CopyItems.Count > 15)
+                if (CopyItems.Count > 105)
                 {
                     CopyItems.RemoveAt(0);
                 }
-                if (!CopyItems.Any(c => c.Data == it.Data))
-                    CopyItems.Add(it);
+                
+                CopyItem existing = copyItems.FirstOrDefault(c => c.Data == it.Data);
+                if (existing != null)
+                {
+                    SelectedCopyItem = existing;
+                }
+                else CopyItems.Add(it);
             }
             catch (Exception)
             {
                 CopyItems = new ObservableCollection<CopyItem>();
-                //if (!CopyItems.Any(c => c.Data == it.Data))
                     CopyItems.Add(it);
             }
             finally
@@ -115,12 +119,35 @@ namespace CopyBase.Forms.ViewModels
             }
         }
 
-
         internal void Selection_Clicked()
         {
-            SendCtrlV();
+            try
+            {
+                SendCtrlV();
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.InnerException.ToString();
+            }
         }
 
+        internal void DeleteItem(object item, EventArgs e)
+        {
+            try
+            {
+                var theitem = item as CopyItem;
+                if (theitem != null)
+                {
+                    CopyItems.Remove(theitem);
+                }
+            }
+            catch(Exception ex)
+            {
+                ErrorMessage = ex.InnerException.ToString();
+            }
+        }
+
+        #region Window Actions
 
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hwnd, int msg, int wParam, int lParam);
@@ -179,7 +206,10 @@ namespace CopyBase.Forms.ViewModels
         [DllImport("user32.dll")]
         static extern IntPtr GetForegroundWindow();
 
-        private static IntPtr previousHandle = IntPtr.Zero;
+        private static IntPtr previousHandle = IntPtr.Zero; 
+
+        #endregion
+
     }
 
     //public static class RestoreWindowNoActivateExtension

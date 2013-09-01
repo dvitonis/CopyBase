@@ -4,61 +4,74 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-      xmlns:ViewModels="clr-namespace:CopyBase.Forms.ViewModels"
+	  xmlns:ViewModels="clr-namespace:CopyBase.Forms.ViewModels"
+	  xmlns:l="clr-namespace:UIControls;assembly=UIControls"
 	  mc:Ignorable="d" 
 	  d:DesignHeight="300" d:DesignWidth="300"
 	Title="MainPage"
-      Background="#FF170404">
+	  Background="#FF171515">
 	<Page.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary
-					Source="pack://application:,,,/CopyBase;component/Styles/AllResources.xaml" />
-			</ResourceDictionary.MergedDictionaries>
+					<ResourceDictionary Source="pack://application:,,,/UIControls;component/Styles/AllResources.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/UIControls;component/Themes/Generic.xaml" />
+				</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Page.Resources>
-	    <Grid x:Name="GridMain"
+	<Grid x:Name="GridMain"
 		  Grid.Column="1">
-        <Grid.DataContext>
-            <ViewModels:MainPageViewModel />
-        </Grid.DataContext>
-        <Grid.RowDefinitions>
+		<Grid.DataContext>
+			<ViewModels:MainPageViewModel />
+		</Grid.DataContext>
+		<Grid.RowDefinitions>
 			<RowDefinition Height="17" />
 			<RowDefinition />
+            <RowDefinition Height="17" />
 		</Grid.RowDefinitions>
-        <Controls:MetroContentControl>
-            <Grid x:Name="GridMenuBar"
+		<Controls:MetroContentControl>
+			<Grid x:Name="GridMenuBar"
 			  VerticalAlignment="Top">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
-                <ColumnDefinition />
+				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
-            <TextBlock 
-                        Text="COPYBASE"
-                        FontFamily="Segoe UI Light"
-                       Foreground="#FFFCFCFC" />
+			<TextBlock 
+						Text="COPYBASE"
+						FontFamily="Segoe UI Light"
+					   Foreground="#FFFCFCFC" />
 			<Controls:WindowCommands Background="#FFCD2222"
-                                     HorizontalAlignment="Right"
-                                     Grid.Column="1" />
+									 HorizontalAlignment="Right"
+									 Grid.Column="1" />
 		</Grid>
+		</Controls:MetroContentControl>
+		<ListBox x:Name="ListBoxCopyItems"
+				 Grid.Row="1"
+				 Style="{StaticResource CBListBox}"
+				 ItemContainerStyle="{StaticResource CBListBoxItem}"
+				 Margin="0,0,0,0"
+				 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				 ScrollViewer.VerticalScrollBarVisibility="Auto"
+				 ScrollViewer.CanContentScroll="True"
+				 ItemsSource="{Binding CopyItems}"
+				 SelectedItem="{Binding SelectedCopyItem}"
+				 MouseDown="ListBoxCopyItems_MouseDown">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding Entry}" />
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+        <Controls:MetroContentControl Grid.Row="2">
+            <TextBlock Name="TextBlockErrorMessage"
+                       Text="{Binding Path=ErrorMessage}"
+                       FontSize="12"
+                       Background="{x:Null}"
+                       Foreground="#FFB20C0C"
+                       Margin="0,0,0,0"
+                       UseLayoutRounding="True"
+                       TextWrapping="Wrap" />
         </Controls:MetroContentControl>
-        <ListBox x:Name="ListBoxCopyItems"
-                 Grid.Row="1"
-                 Style="{StaticResource EsenseListBox}"
-                 Margin="0,0,0,0"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 ScrollViewer.CanContentScroll="True"
-                 ItemsSource="{Binding CopyItems}"
-                 SelectedItem="{Binding SelectedCopyItem}"
-                 MouseDown="ListBoxCopyItems_MouseDown">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Entry}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
 </Page>

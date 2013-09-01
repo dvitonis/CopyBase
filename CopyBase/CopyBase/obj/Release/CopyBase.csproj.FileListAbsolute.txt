@@ -13,3 +13,24 @@ C:\Users\Darius\documents\visual studio 2012\Projects\CopyBase\CopyBase\obj\Rele
 C:\Users\Darius\documents\visual studio 2012\Projects\CopyBase\CopyBase\obj\Release\CopyBase.csproj.GenerateResource.Cache
 C:\Users\Darius\documents\visual studio 2012\Projects\CopyBase\CopyBase\obj\Release\CopyBase.exe
 C:\Users\Darius\documents\visual studio 2012\Projects\CopyBase\CopyBase\obj\Release\CopyBase.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase.exe
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\bin\Release\CopyBase.exe
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\bin\Release\CopyBase.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\bin\Release\MahApps.Metro.dll
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\bin\Release\System.Windows.Interactivity.dll
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\bin\Release\UIControls.dll
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\bin\Release\UIControls.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase.csprojResolveAssemblyReference.cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\MainWindow.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\Styles\Esense\ListBox.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\Forms\Views\MainPage.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\MainWindow.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\App.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase_MarkupCompile.cache
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase_MarkupCompile.lref
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\Forms\Views\MainPage.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase.g.resources
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase.Properties.Resources.resources
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\CopyBase\obj\Release\CopyBase.csproj.GenerateResource.Cache

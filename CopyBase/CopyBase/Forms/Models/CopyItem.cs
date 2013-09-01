@@ -51,19 +51,30 @@ namespace CopyBase.Forms.Models
             }
             set
             {
-                String newvalue = value;
-                newvalue.Trim();
-                var splitted= newvalue.Split(new string[] { "\r\n", "\n" }, 4, StringSplitOptions.RemoveEmptyEntries);
-                newvalue = splitted[0];
-                var stop = splitted.Length > 3 ? 3 : splitted.Length;
-                for (int i = 1; i < stop; i++)
+                try
                 {
-                    newvalue += "\r\n" + splitted[i]; 
+                    String newvalue = value;
+                    newvalue.Trim();
+                    var splitted = newvalue.Split(new string[] { "\r\n", "\n" }, 4, StringSplitOptions.RemoveEmptyEntries);
+                    newvalue = splitted[0];
+                    var stop = splitted.Length > 3 ? 3 : splitted.Length;
+                    for (int i = 1; i < stop; i++)
+                    { 
+                        newvalue += "\r\n" + splitted[i];
+                    }
+                    if (entry != newvalue)
+                    {
+                        entry = newvalue;
+                        NotifyPropertyChanged("Entry");
+                    }
                 }
-                if (entry != newvalue)
+                catch (Exception)
                 {
-                    entry = newvalue;
-                    NotifyPropertyChanged("Entry");
+                    if (entry != value)
+                    {
+                        entry = value;
+                        NotifyPropertyChanged("Entry");
+                    }
                 }
             }
         }

@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Buttons/WindowCommands/WindowCommands.xaml" />
+        <ResourceDictionary Source="Buttons/CBButtons.xaml" />
+        <ResourceDictionary Source="ListBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
