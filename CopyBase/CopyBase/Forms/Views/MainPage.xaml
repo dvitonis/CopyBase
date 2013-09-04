@@ -59,7 +59,10 @@
 				<DataTemplate>
 					<StackPanel>
 						<TextBlock Text="{Binding Entry}" />
-					</StackPanel>
+                        <StackPanel.ToolTip>
+                            <TextBlock Text="{Binding Data}" />
+                        </StackPanel.ToolTip>
+                    </StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
