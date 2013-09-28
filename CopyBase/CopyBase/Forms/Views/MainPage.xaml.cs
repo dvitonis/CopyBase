@@ -39,5 +39,10 @@ namespace CopyBase.Forms.Views
             ViewModel.Selection_Clicked();
         }
 
+        private void ListClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ListClear();
+        }
+
     }
 }

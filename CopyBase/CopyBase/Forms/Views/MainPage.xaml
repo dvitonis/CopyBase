@@ -34,14 +34,27 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition />
 				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 			<TextBlock 
 						Text="COPYBASE"
 						FontFamily="Segoe UI Light"
 					   Foreground="#FFFCFCFC" />
-			<Controls:WindowCommands Background="#FFCD2222"
-									 HorizontalAlignment="Right"
-									 Grid.Column="1" />
+            <Button Name="ListClearButton"
+                    Style="{StaticResource CBImageButton}"
+                    Visibility="Visible"
+                    Grid.Column="1"
+                    Width="15"
+                    Height="15"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                    BorderBrush="{x:Null}"
+                        Background="{x:Null}"
+                        Click="ListClearButton_Click">
+            </Button>
+                <Controls:WindowCommands Background="#FFCD2222"
+                                         Grid.Column="2"
+                                         HorizontalAlignment="Right" />
 		</Grid>
 		</Controls:MetroContentControl>
 		<ListBox x:Name="ListBoxCopyItems"

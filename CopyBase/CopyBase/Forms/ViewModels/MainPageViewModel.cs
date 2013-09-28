@@ -210,6 +210,11 @@ namespace CopyBase.Forms.ViewModels
 
         #endregion
 
+
+        internal void ListClear()
+        {
+            CopyItems.Clear();
+        }
     }
 
     //public static class RestoreWindowNoActivateExtension

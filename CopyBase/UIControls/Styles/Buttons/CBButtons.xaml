@@ -81,4 +81,79 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="CBImageButton"
+           TargetType="Button">
+        <EventSetter Event="Click"
+                     Handler="ButtonDelete_Click" />
+        <Setter Property="Visibility"
+                Value="Visible" />
+        <Setter Property="Foreground"
+                Value="{StaticResource Foreground}" />
+        <Setter Property="Background"
+                Value="{StaticResource BackgroundNormal}" />
+        <Setter Property="BorderBrush"
+                Value="{StaticResource BorderBrushNormal}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="enterMouseOver">
+                            <DoubleAnimation Duration="0:0:0.2"
+                                             To="1"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Storyboard.TargetName="IconDelete" />
+                        </Storyboard>
+                        <Storyboard x:Key="exitMouseOver">
+                            <DoubleAnimation Duration="0:0:0.1"
+                                             Storyboard.TargetProperty="Opacity"
+                                             Storyboard.TargetName="IconDelete" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Border SnapsToDevicePixels="True"
+                            BorderThickness="1"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Rectangle x:Name="IconDelete"
+                                       Grid.Column="0"
+                                       
+                                       Opacity="0.6"
+                                       OpacityMask="{DynamicResource vec_clear}"
+                                       Fill="#FFFFFFFF">
+                            </Rectangle>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver"
+                                           Value="True" />
+                                <Condition Property="IsPressed"
+                                           Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource enterMouseOver}" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource exitMouseOver}" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <Trigger Property="IsPressed"
+                                 Value="True">
+                            <Setter TargetName="IconDelete"
+                                    Property="Opacity"
+                                    Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
