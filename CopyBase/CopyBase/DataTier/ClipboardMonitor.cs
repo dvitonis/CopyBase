@@ -3,21 +3,23 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Runtime.InteropServices;
 using CopyBase.Forms.Models;
+using System.Timers;
 
 namespace CopyBase.DataTier
 {
     public static class ClipboardMonitor
     {
-        public delegate void OnClipboardChangeEventHandler(ClipboardFormat format, object data);
+        public delegate void OnClipboardChangeEventHandler(DataObject data, string[] formats);
         public static event OnClipboardChangeEventHandler OnClipboardChange;
 
         public static void Start()
         {
+
             ClipboardWatcher.Start();
-            ClipboardWatcher.OnClipboardChange += (ClipboardFormat format, object data) =>
+            ClipboardWatcher.OnClipboardChange += (DataObject data, string[] formats) =>
             {
                 if (OnClipboardChange != null)
-                    OnClipboardChange(format, data);
+                    OnClipboardChange(data, formats);
             };
         }
 
@@ -31,15 +33,18 @@ namespace CopyBase.DataTier
         {
             try
             {
-                Clipboard.SetText(item.Data);
-
+                Clipboard.Clear();
+                
+                Clipboard.SetDataObject(item.Item, true, 2, 100);
+                
+                return;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 try
                 {
                     System.Threading.Thread.Sleep(100);
-                    Clipboard.SetText(item.Data);
+                    //Clipboard.SetData(item.Format.ToString(), item.Item);
 
                 }
                 catch (Exception)
@@ -51,13 +56,43 @@ namespace CopyBase.DataTier
 
         class ClipboardWatcher : Form
         {
+            private System.Timers.Timer timer = new System.Timers.Timer(clipIdle);
+            private ClipboardState clipState = ClipboardState.Ready;
+            const int clipIdle = 100;
+
+            ClipboardWatcher()
+            {
+                timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+            }
+
+            public ClipboardState ClipState
+            {
+                get
+                {
+                    return clipState;
+                }
+                set
+                {
+                    if (clipState != value && value == ClipboardState.Busy)
+                    {
+                        clipState = value;
+                        timer.Start();
+                    }
+                }
+            }
+
+            void timer_Elapsed(object sender, ElapsedEventArgs e)
+            {
+                timer.Stop();
+                clipState = ClipboardState.Ready;
+            }
             // static instance of this form
             private static ClipboardWatcher mInstance;
 
             // needed to dispose this form
             static IntPtr nextClipboardViewer;
 
-            public delegate void OnClipboardChangeEventHandler(ClipboardFormat format, object data);
+            public delegate void OnClipboardChangeEventHandler(DataObject data, string[] formats);
             public static event OnClipboardChangeEventHandler OnClipboardChange;
 
             // start listening
@@ -119,7 +154,11 @@ namespace CopyBase.DataTier
                 switch (m.Msg)
                 {
                     case WM_DRAWCLIPBOARD:
-                        ClipChanged();
+                        if (ClipState == ClipboardState.Ready)
+                        {
+                            ClipChanged();
+                            ClipState = ClipboardState.Busy;
+                        }
                         SendMessage(nextClipboardViewer, m.Msg, m.WParam, m.LParam);
                         break;
 
@@ -136,32 +175,30 @@ namespace CopyBase.DataTier
                 }
             }
 
-            static readonly string[] formats = Enum.GetNames(typeof(ClipboardFormat));
-
             private void ClipChanged()
             {
                 try
                 {
+                    
                     IDataObject iData = Clipboard.GetDataObject();
 
-                    ClipboardFormat? format = null;
+                    var formats = iData.GetFormats();
 
+                    if (formats.Length < 1 || iData==null)
+                        return;
+
+                    DataObject dataObj = new DataObject();
                     foreach (var f in formats)
                     {
-                        if (iData.GetDataPresent(f))
+                        if (f != "EnhancedMetafile")
                         {
-                            format = (ClipboardFormat)Enum.Parse(typeof(ClipboardFormat), f);
-                            break;
+                            var data = iData.GetData(f);
+                            dataObj.SetData(f, data); 
                         }
                     }
 
-                    object data = iData.GetData(format.ToString());
-
-                    if (data == null || format == null)
-                        return;
-
                     if (OnClipboardChange != null)
-                        OnClipboardChange((ClipboardFormat)format, data);
+                        OnClipboardChange(dataObj, formats);
                 }
                 catch (Exception)
                 {
@@ -175,14 +212,6 @@ namespace CopyBase.DataTier
 
     public enum ClipboardFormat : byte
     {
-        /// <summary>Specifies the standard ANSI text format. This static field is read-only.
-        /// </summary>
-        /// <filterpriority>1</filterpriority>
-        Text,
-        /// <summary>Specifies the standard Windows Unicode text format. This static field
-        /// is read-only.</summary>
-        /// <filterpriority>1</filterpriority>
-        UnicodeText,
         /// <summary>Specifies the Windows device-independent bitmap (DIB) format. This static
         /// field is read-only.</summary>
         /// <filterpriority>1</filterpriority>
@@ -193,7 +222,7 @@ namespace CopyBase.DataTier
         /// <summary>Specifies the Windows enhanced metafile format. This static field is
         /// read-only.</summary>
         /// <filterpriority>1</filterpriority>
-        EnhancedMetafile,
+        //EnhancedMetafile,
         /// <summary>Specifies the Windows metafile format, which Windows Forms does not
         /// directly use. This static field is read-only.</summary>
         /// <filterpriority>1</filterpriority>
@@ -238,7 +267,7 @@ namespace CopyBase.DataTier
         /// <summary>Specifies the Windows culture format, which Windows Forms does not directly
         /// use. This static field is read-only.</summary>
         /// <filterpriority>1</filterpriority>
-        Locale,
+        //Locale,
         /// <summary>Specifies text consisting of HTML data. This static field is read-only.
         /// </summary>
         /// <filterpriority>1</filterpriority>
@@ -260,6 +289,25 @@ namespace CopyBase.DataTier
         /// This static field is read-only.</summary>
         /// <filterpriority>1</filterpriority>
         Serializable,
+        /// <summary>Specifies the standard Windows Unicode text format. This static field
+        /// is read-only.</summary>
+        /// <filterpriority>1</filterpriority>
+        UnicodeText,
+        /// <summary>Specifies the standard ANSI text format. This static field is read-only.
+        /// </summary>
+        /// <filterpriority>1</filterpriority>
+        Text,
     }
 
+    public enum ClipboardState : byte
+    {
+        /// <summary>Specifies that current clipboard item is under processing. This static
+        /// field is read-only.</summary>
+        /// <filterpriority>1</filterpriority>
+        Busy,
+        /// <summary>Specifies that clipboard items are ready to be processed. This static
+        /// field is read-only.</summary>
+        /// <filterpriority>1</filterpriority>
+        Ready,
+    }
 }

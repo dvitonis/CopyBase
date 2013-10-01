@@ -17,7 +17,7 @@ namespace CopyBase.Forms.ViewModels
     public class MainPageViewModel:BaseViewModel
     {
         CopyItem selectedCopyItem;
-        ObservableCollection<CopyItem> copyItems;
+        static ObservableCollection<CopyItem> copyItems;
 
         public ObservableCollection<CopyItem> CopyItems
         {
@@ -56,7 +56,6 @@ namespace CopyBase.Forms.ViewModels
                 if (selectedCopyItem != value)
                 {
                     selectedCopyItem = value;
-                    ClipboardMonitor.AddToClipboard(selectedCopyItem);
                     NotifyPropertyChanged("SelectedCopyItem");
                 }
             }
@@ -72,22 +71,14 @@ namespace CopyBase.Forms.ViewModels
             ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
         }
 
-        void ClipboardMonitor_OnClipboardChange(ClipboardFormat format, object data)
+        void ClipboardMonitor_OnClipboardChange(System.Windows.Forms.DataObject data, string[] formats)
         {
             System.Windows.Application.Current.Dispatcher.Invoke(
                 System.Windows.Threading.DispatcherPriority.Normal,
                 (Action)delegate()
                 {
                     CopyItem it;
-                    if ((format == ClipboardFormat.Text || 
-                        format == ClipboardFormat.UnicodeText || 
-                        format == ClipboardFormat.Html) &&
-                        data.ToString() !="")
-                    {
-                        it = new CopyItem(data.ToString());
-                    }
-                    else return;
-
+                    it = new CopyItem(data, formats);
                     AddToList(it);
                 });
         }
@@ -100,22 +91,22 @@ namespace CopyBase.Forms.ViewModels
                 {
                     CopyItems.RemoveAt(0);
                 }
-                
-                CopyItem existing = copyItems.FirstOrDefault(c => c.Data == it.Data);
-                if (existing != null)
+
+                if (!SelectedCopyItem.Equals(it))
                 {
-                    SelectedCopyItem = existing;
+                    CopyItems.Add(it);
+                    SelectedCopyItem = it;
                 }
-                else CopyItems.Add(it);
             }
             catch (Exception)
             {
                 CopyItems = new ObservableCollection<CopyItem>();
                     CopyItems.Add(it);
+                    SelectedCopyItem = it;
             }
             finally
             {
-                SelectedCopyItem = it;
+                
             }
         }
 
@@ -123,11 +114,12 @@ namespace CopyBase.Forms.ViewModels
         {
             try
             {
+                ClipboardMonitor.AddToClipboard(SelectedCopyItem);
                 SendCtrlV();
             }
             catch (Exception ex)
             {
-                ErrorMessage = ex.InnerException.ToString();
+                ErrorMessage = ex.ToString();
             }
         }
 
@@ -146,6 +138,12 @@ namespace CopyBase.Forms.ViewModels
                 ErrorMessage = ex.InnerException.ToString();
             }
         }
+
+        internal void ListClear()
+        {
+            CopyItems.Clear();
+        }
+
 
         #region Window Actions
 
@@ -211,10 +209,6 @@ namespace CopyBase.Forms.ViewModels
         #endregion
 
 
-        internal void ListClear()
-        {
-            CopyItems.Clear();
-        }
     }
 
     //public static class RestoreWindowNoActivateExtension
