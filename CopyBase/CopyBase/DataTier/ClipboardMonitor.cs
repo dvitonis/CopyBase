@@ -33,8 +33,7 @@ namespace CopyBase.DataTier
         {
             try
             {
-                Clipboard.Clear();
-                
+                //Clipboard.Clear();
                 Clipboard.SetDataObject(item.Item, true, 2, 100);
                 
                 return;
@@ -196,6 +195,7 @@ namespace CopyBase.DataTier
                             dataObj.SetData(f, data); 
                         }
                     }
+                    dataObj.SetData(CopyItem.CopyBaseItemIdentifier, CopyItem.CopyBaseItemIdentifier);
 
                     if (OnClipboardChange != null)
                         OnClipboardChange(dataObj, formats);

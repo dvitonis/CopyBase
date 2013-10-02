@@ -87,26 +87,21 @@ namespace CopyBase.Forms.ViewModels
         {
             try
             {
-                if (CopyItems.Count > 105)
+                if (!it.IsCopyBaseItem())
                 {
-                    CopyItems.RemoveAt(0);
-                }
-
-                if (!SelectedCopyItem.Equals(it))
-                {
+                    if (CopyItems == null)
+                        CopyItems = new ObservableCollection<CopyItem>();
                     CopyItems.Add(it);
-                    SelectedCopyItem = it;
                 }
             }
             catch (Exception)
             {
                 CopyItems = new ObservableCollection<CopyItem>();
                     CopyItems.Add(it);
-                    SelectedCopyItem = it;
             }
             finally
             {
-                
+                SelectedCopyItem = it;
             }
         }
 
@@ -115,7 +110,7 @@ namespace CopyBase.Forms.ViewModels
             try
             {
                 ClipboardMonitor.AddToClipboard(SelectedCopyItem);
-                SendCtrlV();
+                //SendCtrlV();
             }
             catch (Exception ex)
             {

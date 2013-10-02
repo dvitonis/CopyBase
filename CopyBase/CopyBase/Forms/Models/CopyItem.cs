@@ -10,6 +10,8 @@ namespace CopyBase.Forms.Models
 {
     public class CopyItem:INotifyPropertyChanged
     {
+        public const string CopyBaseItemIdentifier = "CopyBaseItem";
+
         #region Private fields
         private Guid id;
         private DateTime copyDate;
@@ -41,6 +43,8 @@ namespace CopyBase.Forms.Models
             {
                 if (data != value)
                 {
+                    //TODO
+                    if (value == "") throw new Exception();
                     data = value;
                     NotifyPropertyChanged("Data");
                 }
@@ -128,12 +132,58 @@ namespace CopyBase.Forms.Models
         public CopyItem(DataObject O, string[] formats)
         {
             id = new Guid();
-            Item = O;
-            Data = O.GetData(formats[0]).ToString();
-            Entry = O.GetData(formats[0]).ToString();
             Formats = formats;
+            Item = O;
+            Data = ExtractText();
+            Entry = Data;
         }
 
+        public bool IsCopyBaseItem()
+        {
+            return this.Formats.Contains(CopyItem.CopyBaseItemIdentifier);
+        }
+
+        private string ExtractText()
+        {
+            if (this.Item.ContainsText())
+                return this.Item.GetData(Formats.Contains("System.String") ? "System.String" : Formats[0]).ToString();
+            
+            if (this.Item.ContainsFileDropList())
+            {
+                if (Formats.Contains("FileDrop"))
+                {
+                    string[] files = (string[])this.Item.GetData("FileDrop");
+                    var amount = files.Length;
+                    var text = amount + " files:";
+                    foreach (string file in files)
+                        text += "\r\n" + file;
+                    return text;
+                }
+                else return "File(s)";
+            }
+
+            if (this.Item.ContainsImage())
+            {
+                if (Formats.Contains("Bitmap"))
+                {
+                    return "Image";
+                }
+                return "Image";
+            }
+
+            if (this.Item.ContainsAudio())
+            {
+                if (Formats.Contains("Audio"))
+                {
+                    return "Audio";
+                }
+                return "Audio";
+            }
+
+            return this.Item.ToString();
+        }
+
+        #region Unused
         public bool Equals(CopyItem obj)
         {
             if (this.Formats.OrderBy(i => i).SequenceEqual(obj.Formats.OrderBy(i => i)))
@@ -177,7 +227,8 @@ namespace CopyBase.Forms.Models
                     }
                 }
             return hashcode;
-        }
+        } 
+        #endregion
 
         #region INotifyPropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
