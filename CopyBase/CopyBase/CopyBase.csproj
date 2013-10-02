@@ -90,6 +90,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataTier\ClipboardMonitor.cs" />
+    <Compile Include="DataTier\Hotkey.cs" />
+    <Compile Include="DataTier\KeyBindCommand.cs" />
     <Compile Include="DataTier\WindowWatcher.cs" />
     <Compile Include="Forms\Models\CopyItem.cs" />
     <Compile Include="Forms\ViewModels\BaseViewModel.cs" />

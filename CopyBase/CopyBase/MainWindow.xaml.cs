@@ -27,10 +27,13 @@ namespace CopyBase
     public partial class MainWindow : Window
     {
         System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+        private HotKey hotKey;
 
         public MainWindow()
         {
             InitializeComponent();
+            InitializeHotKey();
+
             FrameMain.NavigationService.Navigate(new MainPage());
 
             this.Loaded += MainWindow_Loaded;
@@ -54,6 +57,27 @@ namespace CopyBase
                 };
         }
 
+        #region HotKey
+        private void InitializeHotKey()
+        {
+            hotKey = new HotKey(Key.C, KeyModifier.Ctrl | KeyModifier.Shift, OnHotKeyHandler);
+        }
+
+        private void OnHotKeyHandler(HotKey hotKey)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                this.Hide();
+                this.WindowState = WindowState.Minimized;
+            }
+            else
+            {
+                this.Show();
+                this.WindowState = WindowState.Normal;
+            }
+        } 
+        #endregion
+
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             ClipboardMonitor.Start();
@@ -64,6 +88,8 @@ namespace CopyBase
             this.Closing -= MainWindow_Closing;
             ClipboardMonitor.Stop(); // do not forget to stop
             ni.Visible = false;
+            hotKey.Unregister();
+            hotKey.Dispose();
         }
 
         private const int GWL_EXSTYLE = -20;
