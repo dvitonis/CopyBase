@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -124,14 +125,14 @@ namespace CopyBase.Forms.Models
          */
         public CopyItem(String D)
         {
-            id = new Guid();
+            id = Guid.NewGuid();
             Data = D;
             Entry = D;
         }
 
         public CopyItem(DataObject O, string[] formats)
         {
-            id = new Guid();
+            id = Guid.NewGuid();
             Formats = formats;
             Item = O;
             Data = ExtractText();
@@ -147,20 +148,6 @@ namespace CopyBase.Forms.Models
         {
             if (this.Item.ContainsText())
                 return this.Item.GetData(Formats.Contains("System.String") ? "System.String" : Formats[0]).ToString();
-            
-            if (this.Item.ContainsFileDropList())
-            {
-                if (Formats.Contains("FileDrop"))
-                {
-                    string[] files = (string[])this.Item.GetData("FileDrop");
-                    var amount = files.Length;
-                    var text = amount + " files:";
-                    foreach (string file in files)
-                        text += "\r\n" + file;
-                    return text;
-                }
-                else return "File(s)";
-            }
 
             if (this.Item.ContainsImage())
             {
@@ -180,7 +167,30 @@ namespace CopyBase.Forms.Models
                 return "Audio";
             }
 
+            if (this.Item.GetDataPresent(DataFormats.FileDrop, false) == true)
+            {
+                string[] fileNames = (string[])this.Item.GetData(DataFormats.FileDrop);
+                return FileNamesToString(fileNames);
+            }
+
+            else if (this.Item.GetDataPresent("FileGroupDescriptorW"))
+            {
+                FileDataObject dataObject = new FileDataObject(this.Item);
+                string[] fileNames = (string[])dataObject.GetData("FileGroupDescriptorW");
+                return FileNamesToString(fileNames);
+            }
+
+
             return this.Item.ToString();
+        }
+
+        private string FileNamesToString(string[] fileNames)
+        {
+            var amount = fileNames.Length;
+            var text = amount + " files:";
+            foreach (string file in fileNames)
+                text += "\r\n" + file;
+            return text;
         }
 
         #region Unused

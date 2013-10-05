@@ -33,10 +33,7 @@ namespace CopyBase.DataTier
         {
             try
             {
-                //Clipboard.Clear();
                 Clipboard.SetDataObject(item.Item, true, 2, 100);
-                
-                return;
             }
             catch (Exception e)
             {

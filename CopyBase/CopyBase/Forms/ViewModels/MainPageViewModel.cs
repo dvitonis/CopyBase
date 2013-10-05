@@ -92,16 +92,18 @@ namespace CopyBase.Forms.ViewModels
                     if (CopyItems == null)
                         CopyItems = new ObservableCollection<CopyItem>();
                     CopyItems.Add(it);
+                    SelectedCopyItem = it;
                 }
             }
             catch (Exception)
             {
                 CopyItems = new ObservableCollection<CopyItem>();
-                    CopyItems.Add(it);
+                CopyItems.Add(it);
+                SelectedCopyItem = it;
             }
             finally
             {
-                SelectedCopyItem = it;
+                
             }
         }
 

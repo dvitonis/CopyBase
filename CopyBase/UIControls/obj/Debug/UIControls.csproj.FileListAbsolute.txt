@@ -14,3 +14,4 @@ C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Debug\UIContro
 C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Debug\UIControls.csproj.GenerateResource.Cache
 C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Debug\UIControls.dll
 C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Debug\UIControls.pdb
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Debug\UIControls.csprojResolveAssemblyReference.cache
