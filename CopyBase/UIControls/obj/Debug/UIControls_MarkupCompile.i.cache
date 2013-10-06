@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-5-1789287569
+6471349306
 
-91019183289
+101232037645
 121654848548
-Styles\AllResources.xaml;Styles\Buttons\CBButtons.xaml;Styles\Buttons\WindowCommands\WindowCommands.xaml;Styles\ListBox.xaml;Themes\Generic.xaml;
+Styles\AllResources.xaml;Styles\Buttons\CBButtons.xaml;Styles\Buttons\WindowCommands\WindowCommands.xaml;Styles\Content\CopyBaseContentControl.xaml;Styles\ListBox.xaml;Themes\Generic.xaml;
 
-False
+True
 

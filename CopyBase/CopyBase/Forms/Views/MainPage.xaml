@@ -3,8 +3,9 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	  xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-	  xmlns:ViewModels="clr-namespace:CopyBase.Forms.ViewModels"
+      xmlns:Controls="clr-namespace:UIControls.Controls;assembly=UIControls"
+      xmlns:ControlsM="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:ViewModels="clr-namespace:CopyBase.Forms.ViewModels"
 	  xmlns:l="clr-namespace:UIControls;assembly=UIControls"
 	  mc:Ignorable="d" 
 	  d:DesignHeight="300" d:DesignWidth="300"
@@ -28,7 +29,7 @@
 			<RowDefinition />
             <RowDefinition Height="17" />
 		</Grid.RowDefinitions>
-		<Controls:MetroContentControl>
+		<Controls:CopyBaseContentControl>
 			<Grid x:Name="GridMenuBar"
 			  VerticalAlignment="Top">
 			<Grid.ColumnDefinitions>
@@ -52,11 +53,11 @@
                         Background="{x:Null}"
                         Click="ListClearButton_Click">
             </Button>
-                <Controls:WindowCommands Background="#FFCD2222"
+                <ControlsM:WindowCommands Background="#FFCD2222"
                                          Grid.Column="2"
                                          HorizontalAlignment="Right" />
 		</Grid>
-		</Controls:MetroContentControl>
+        </Controls:CopyBaseContentControl>
 		<ListBox x:Name="ListBoxCopyItems"
 				 Grid.Row="1"
 				 Style="{StaticResource CBListBox}"
@@ -79,7 +80,7 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-        <Controls:MetroContentControl Grid.Row="2">
+        <Controls:CopyBaseContentControl Grid.Row="2">
             <TextBlock Name="TextBlockErrorMessage"
                        Text="{Binding Path=ErrorMessage}"
                        FontSize="12"
@@ -88,6 +89,6 @@
                        Margin="0,0,0,0"
                        UseLayoutRounding="True"
                        TextWrapping="Wrap" />
-        </Controls:MetroContentControl>
+        </Controls:CopyBaseContentControl>
     </Grid>
 </Page>

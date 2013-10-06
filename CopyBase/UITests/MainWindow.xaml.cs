@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using UIControls;
 
 namespace UITests
@@ -33,8 +34,18 @@ namespace UITests
             //    }
             //}
             CopyBase.Forms.Models.CopyItem item = new CopyBase.Forms.Models.CopyItem("theitemName");
-            thelist.Items.Add(item);
+            //thelist.Items.Add(item);
             StaticUICommands.OnDelete += theitem_Clear;
+
+            Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
+            {
+                var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+                var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
+                var corner = transform.Transform(new Point(workingArea.Right, workingArea.Bottom));
+
+                this.Left = corner.X - this.ActualWidth - 100;
+                this.Top = corner.Y - this.ActualHeight;
+            }));
 
         }
 
@@ -42,7 +53,7 @@ namespace UITests
         {
             try
             {
-                thelist.Items.Remove(item);
+                //thelist.Items.Remove(item);
             }
             catch (Exception ex)
             {

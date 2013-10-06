@@ -45,7 +45,7 @@ namespace CopyBase.Forms.Models
                 if (data != value)
                 {
                     //TODO
-                    if (value == "") throw new Exception();
+                    //if (value == "") throw new Exception();
                     data = value;
                     NotifyPropertyChanged("Data");
                 }

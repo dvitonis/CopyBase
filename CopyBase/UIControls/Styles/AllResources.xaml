@@ -3,6 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Buttons/WindowCommands/WindowCommands.xaml" />
         <ResourceDictionary Source="Buttons/CBButtons.xaml" />
+        <ResourceDictionary Source="Content/CopyBaseContentControl.xaml" />
         <ResourceDictionary Source="ListBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

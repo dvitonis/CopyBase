@@ -18,6 +18,7 @@ using System.ComponentModel;
 using CopyBase.Forms.ViewModels;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Windows.Threading;
 
 namespace CopyBase
 {
@@ -34,6 +35,8 @@ namespace CopyBase
             InitializeComponent();
             InitializeHotKey();
 
+            CalculatePossition();
+
             FrameMain.NavigationService.Navigate(new MainPage());
 
             this.Loaded += MainWindow_Loaded;
@@ -41,20 +44,14 @@ namespace CopyBase
 
             ni.Icon = new System.Drawing.Icon("Main.ico");
             ni.Visible = true;
+
             ni.Click +=
                 delegate(object sender, EventArgs args)
                 {
-                    if (WindowState == WindowState.Normal)
-                    {
-                        this.Hide();
-                        this.WindowState = WindowState.Minimized;
-                    }
-                    else
-                    {
-                        this.Show();
-                        this.WindowState = WindowState.Normal;
-                    }
+                    CallWindow();
                 };
+
+            this.WindowControl.ExitAnimationCompleted+=WindowControl_ExitAnimationCompleted;
         }
 
         #region HotKey
@@ -65,18 +62,50 @@ namespace CopyBase
 
         private void OnHotKeyHandler(HotKey hotKey)
         {
-            if (WindowState == WindowState.Normal)
+            CallWindow();
+        }
+        #endregion
+
+        private void CallWindow()
+        {
+            CalculatePossition();
+
+            if (!this.WindowControl.ReverseTransition)
+            {
+                this.WindowControl.ReverseTransition = true;
+                this.WindowControl.Reload();
+            }
+            else
+            {
+                this.WindowControl.ReverseTransition = false;
+                this.Show();
+                this.WindowState = WindowState.Normal;
+            }
+        }
+
+        private void WindowControl_ExitAnimationCompleted(object sender, EventArgs e)
+        {
+            if (this.WindowControl.ReverseTransition)
             {
                 this.Hide();
                 this.WindowState = WindowState.Minimized;
             }
-            else
+        }
+
+        private void CalculatePossition()
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
-                this.Show();
-                this.WindowState = WindowState.Normal;
-            }
+                var workingArea = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea;
+                var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
+                var toprightcorner = transform.Transform(new Point(workingArea.Right, workingArea.Top));
+                var bottomleftcorner = transform.Transform(new Point(workingArea.Left, workingArea.Bottom));
+
+                this.Left = toprightcorner.X - this.ActualWidth + 1;
+                this.Top = toprightcorner.Y - 1;
+                this.Height = bottomleftcorner.Y - toprightcorner.Y + 2;
+            }));
         } 
-        #endregion
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {

@@ -3,41 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+        xmlns:Controls="clr-namespace:UIControls.Controls;assembly=UIControls"
         Title="CopyBase"
-        BorderThickness="1"
-        BorderBrush="#3F3F46"
-        WindowStartupLocation="Manual"
+        BorderThickness="0"
         AllowsTransparency="True"
         WindowStyle="None"
-        SizeToContent="Height"
-        Width="300"
         Icon="Main.ico"
-        ResizeMode="NoResize"
         ShowInTaskbar="False"
         Topmost="True"
-        SourceInitialized="Window_SourceInitialized">
-    <i:Interaction.Behaviors>
+        Width="300"
+        SourceInitialized="Window_SourceInitialized"
+        Background="{x:Null}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/UIControls;component/Styles/AllResources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UIControls;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!--<i:Interaction.Behaviors>
         <Behaviours:BorderlessWindowBehavior />
         <Behaviours:DragWindowBehavior />
-    </i:Interaction.Behaviors>
-    <DockPanel>
-        <Frame Name="FrameMain">
-            <Frame.Template>
-                <ControlTemplate TargetType="Frame">
-                    <DockPanel Margin="0">
-                        <StackPanel Visibility="Hidden"
-                                    Margin="0"
-                                    Orientation="Horizontal"
-                                    DockPanel.Dock="Top">
-                        </StackPanel>
+    </i:Interaction.Behaviors>-->
+    <Controls:CopyBaseContentControl x:Name="WindowControl">
+        <DockPanel x:Name="MainDock">
+            <Border BorderThickness="1"
+                    BorderBrush="#FFD7DE39">
+                <Frame Name="FrameMain">
+                    <Frame.Template>
+                        <ControlTemplate TargetType="Frame">
+                            <DockPanel Margin="0">
+                                <StackPanel Visibility="Hidden"
+                                            Margin="0"
+                                            Orientation="Horizontal"
+                                            DockPanel.Dock="Top">
+                                </StackPanel>
 
-                        <Border>
-                            <ContentPresenter />
-                        </Border>
-                    </DockPanel>
-                </ControlTemplate>
+                                <Border>
+                                    <ContentPresenter />
+                                </Border>
+                            </DockPanel>
+                        </ControlTemplate>
 
-            </Frame.Template>
-        </Frame>
-    </DockPanel>
+                    </Frame.Template>
+                </Frame>
+            </Border>
+            <!--<DockPanel.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                  Value="0" />
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.5"
+                                                  Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </DockPanel.Triggers>
+
+        <DockPanel.RenderTransform>
+            <ScaleTransform ScaleY="1" />
+        </DockPanel.RenderTransform>-->
+        </DockPanel>
+    </Controls:CopyBaseContentControl>
 </Window>

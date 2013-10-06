@@ -2,6 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:UIControls;assembly=UIControls"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <ResourceDictionary>
@@ -11,8 +14,26 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="0,0,0,0">
-        <Grid.RowDefinitions>
+    <Grid Margin="0,0,0,0"
+          RenderTransformOrigin="0,1">
+        <!-- Notification area -->
+        <Border BorderThickness="1"
+                Background="Beige"
+                BorderBrush="Black"
+                CornerRadius="10">
+            <StackPanel Margin="20">
+                <TextBlock TextWrapping="Wrap"
+                           Margin="5">
+          <Bold>Notification data</Bold><LineBreak /><LineBreak />
+          Something just happened and you are being notified of it.
+                </TextBlock>
+                <CheckBox Content="Checkable"
+                          Margin="5 5 0 5" />
+                <Button Content="Clickable"
+                        HorizontalAlignment="Center" />
+            </StackPanel>
+        </Border>
+        <!--<Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -21,11 +42,37 @@
                  ItemContainerStyle="{StaticResource CBListBoxItem}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  Margin="0,0,59,0">
-            <!--<ListBoxItem Style="{StaticResource CBListBoxItem}" x:Name="theitem" Content="some good things happen when" />
+        </ListBox>-->
+        <!--<ListBoxItem Style="{StaticResource CBListBoxItem}" x:Name="theitem" Content="some good things happen when" />
             <ListBoxItem Style="{StaticResource CBListBoxItem}" Content="nothing" />-->
-        </ListBox>
         <!--<l:ClearListBox>
             <ListBoxItem IsSelected="True" Content="something" />
         </l:ClearListBox>-->
+
+        <!-- Animation -->
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0"
+                                                  Value="0" />
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.5"
+                                                  Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:2"
+                                                  Value="1" />
+                            <SplineDoubleKeyFrame KeyTime="0:0:4"
+                                                  Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleY="1" />
+        </Grid.RenderTransform>
     </Grid>
 </Window>
