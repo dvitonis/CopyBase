@@ -15,3 +15,4 @@ C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UICont
 C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.dll
 C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.pdb
 C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\Styles\Content\CopyBaseContentControl.baml
+C:\Users\Darius\Documents\GitHub\CopyBase\CopyBase\UIControls\obj\Release\UIControls.csprojResolveAssemblyReference.cache

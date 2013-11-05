@@ -29,7 +29,12 @@
     <Controls:CopyBaseContentControl x:Name="WindowControl">
         <DockPanel x:Name="MainDock">
             <Border BorderThickness="1"
-                    BorderBrush="#FFD7DE39">
+                    Margin="2,0,0,0"
+                    BorderBrush="Black">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      Direction="180" ShadowDepth="2" />
+                </Border.Effect>
                 <Frame Name="FrameMain">
                     <Frame.Template>
                         <ControlTemplate TargetType="Frame">
@@ -49,24 +54,6 @@
                     </Frame.Template>
                 </Frame>
             </Border>
-            <!--<DockPanel.Triggers>
-            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                <BeginStoryboard>
-                    <Storyboard>
-                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                            <SplineDoubleKeyFrame KeyTime="0:0:0"
-                                                  Value="0" />
-                            <SplineDoubleKeyFrame KeyTime="0:0:0.5"
-                                                  Value="1" />
-                        </DoubleAnimationUsingKeyFrames>
-                    </Storyboard>
-                </BeginStoryboard>
-            </EventTrigger>
-        </DockPanel.Triggers>
-
-        <DockPanel.RenderTransform>
-            <ScaleTransform ScaleY="1" />
-        </DockPanel.RenderTransform>-->
         </DockPanel>
     </Controls:CopyBaseContentControl>
 </Window>

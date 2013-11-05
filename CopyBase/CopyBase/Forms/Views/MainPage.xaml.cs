@@ -44,5 +44,19 @@ namespace CopyBase.Forms.Views
             ViewModel.ListClear();
         }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            var parent = VisualTreeHelper.GetParent(this);
+
+            while (parent != null && !(parent is Window))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            var parentWindow = parent as Window;
+
+            parentWindow.Close();
+        }
+
     }
 }

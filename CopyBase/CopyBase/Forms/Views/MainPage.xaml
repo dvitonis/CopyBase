@@ -43,7 +43,8 @@
 					   Foreground="#FFFCFCFC" />
             <Button Name="ListClearButton"
                     Style="{StaticResource CBImageButton}"
-                    Visibility="Visible"
+                        OpacityMask="{DynamicResource vec_clear}"
+                        Visibility="Visible"
                     Grid.Column="1"
                     Width="15"
                     Height="15"
@@ -51,11 +52,27 @@
                         VerticalAlignment="Center"
                     BorderBrush="{x:Null}"
                         Background="{x:Null}"
-                        Click="ListClearButton_Click">
+                        Click="ListClearButton_Click"
+                        ToolTip="CLEAR ALL">
             </Button>
-                <ControlsM:WindowCommands Background="#FFCD2222"
+                <Button x:Name="CloseButton"
+                        Style="{StaticResource CBImageButton}"
+                        Visibility="Visible"
+                        OpacityMask="{DynamicResource vec_delete}"
+                        Width="12"
+                        Height="12"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        BorderBrush="{x:Null}"
+                        Background="{x:Null}"
+                        Grid.Column="2"
+                        Margin="2"
+                        Click="CloseButton_Click"
+                        ToolTip="CLOSE">
+                </Button>
+                <!--<ControlsM:WindowCommands Background="#FFCD2222"
                                          Grid.Column="2"
-                                         HorizontalAlignment="Right" />
+                                         HorizontalAlignment="Right" />-->
 		</Grid>
         </Controls:CopyBaseContentControl>
 		<ListBox x:Name="ListBoxCopyItems"

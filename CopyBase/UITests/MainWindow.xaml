@@ -18,9 +18,13 @@
           RenderTransformOrigin="0,1">
         <!-- Notification area -->
         <Border BorderThickness="1"
-                Background="Beige"
                 BorderBrush="Black"
                 CornerRadius="10">
+            <Border.Effect>
+                <DropShadowEffect Color="Blue"
+                                  ShadowDepth="10"
+                                  Direction="180" />
+            </Border.Effect>
             <StackPanel Margin="20">
                 <TextBlock TextWrapping="Wrap"
                            Margin="5">

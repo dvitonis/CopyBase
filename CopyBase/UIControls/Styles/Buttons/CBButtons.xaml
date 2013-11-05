@@ -118,7 +118,6 @@
                                        Grid.Column="0"
                                        
                                        Opacity="0.6"
-                                       OpacityMask="{DynamicResource vec_clear}"
                                        Fill="#FFFFFFFF">
                             </Rectangle>
                             <ContentPresenter HorizontalAlignment="Center"
