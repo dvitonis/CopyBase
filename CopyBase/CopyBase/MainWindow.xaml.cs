@@ -23,7 +23,7 @@ using System.Windows.Threading;
 namespace CopyBase
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml .
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -32,9 +32,9 @@ namespace CopyBase
 
         public MainWindow()
         {
+            // Initialize components, hotkey, window in correct position and size.
             InitializeComponent();
             InitializeHotKey();
-
             CalculatePossition();
 
             FrameMain.NavigationService.Navigate(new MainPage());
@@ -42,9 +42,9 @@ namespace CopyBase
             this.Loaded += MainWindow_Loaded;
             this.Closing += new CancelEventHandler(MainWindow_Closing);
 
+            // Task bar notification icon.
             ni.Icon = new System.Drawing.Icon("Main.ico");
             ni.Visible = true;
-
             ni.Click +=
                 delegate(object sender, EventArgs args)
                 {
@@ -66,8 +66,12 @@ namespace CopyBase
         }
         #endregion
 
+        /// <summary>
+        /// Display or hide the window.
+        /// </summary>
         private void CallWindow()
         {
+            ///
             CalculatePossition();
 
             if (!this.WindowControl.ReverseTransition)
@@ -83,6 +87,11 @@ namespace CopyBase
             }
         }
 
+        /// <summary>
+        /// Finalize window exit animation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WindowControl_ExitAnimationCompleted(object sender, EventArgs e)
         {
             if (this.WindowControl.ReverseTransition)
@@ -92,6 +101,9 @@ namespace CopyBase
             }
         }
 
+        /// <summary>
+        /// Calculate position and size of the window. 
+        /// </summary>
         private void CalculatePossition()
         {
             Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
@@ -107,11 +119,21 @@ namespace CopyBase
             }));
         } 
 
+        /// <summary>
+        /// Handle the window loading finalization, start monitoring process.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             ClipboardMonitor.Start();
         }
 
+        /// <summary>
+        /// Handle the window closing finalization, stop monitoring process, deactivate hotkey, notification icon.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             this.Closing -= MainWindow_Closing;
@@ -130,6 +152,11 @@ namespace CopyBase
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
+        /// <summary>
+        /// Handle window source initialization finalization
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
             //if (this.IsActive)

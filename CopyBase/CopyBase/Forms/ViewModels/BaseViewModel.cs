@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CopyBase.Forms.ViewModels
 {
+    /// <summary>
+    /// Base view model, that implements INotifyPropertyChanged and en ErrorMessage property.
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -13,7 +16,7 @@ namespace CopyBase.Forms.ViewModels
         string errorMessage;
 
         /// <summary>
-        /// Error Message
+        /// Error Message.
         /// </summary>
         public string ErrorMessage
         {
@@ -30,7 +33,7 @@ namespace CopyBase.Forms.ViewModels
         }
 
         /// <summary>
-        /// Notify of Property Changed event
+        /// Notify of Property Changed event.
         /// </summary>
         /// <param name="propertyName"></param>
         public void NotifyPropertyChanged(string propertyName)

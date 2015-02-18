@@ -34,16 +34,31 @@ namespace CopyBase.Forms.Views
             ListBoxCopyItems.AddHandler(UIElement.MouseDownEvent, new MouseButtonEventHandler(ListBoxCopyItems_MouseDown), true);
         }
 
+        /// <summary>
+        /// Handle mouse click on list items.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListBoxCopyItems_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ViewModel.Selection_Clicked();
         }
 
+        /// <summary>
+        /// Handle clear button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListClearButton_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.ListClear();
         }
 
+        /// <summary>
+        /// Handle app closing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             var parent = VisualTreeHelper.GetParent(this);

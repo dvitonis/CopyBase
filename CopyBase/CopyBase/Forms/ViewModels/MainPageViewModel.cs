@@ -14,6 +14,9 @@ using System.ComponentModel;
 
 namespace CopyBase.Forms.ViewModels
 {
+    /// <summary>
+    /// Main page view model.
+    /// </summary>
     public class MainPageViewModel:BaseViewModel
     {
         CopyItem selectedCopyItem;
@@ -61,6 +64,9 @@ namespace CopyBase.Forms.ViewModels
             }
         }
 
+        /// <summary>
+        /// Initialize model, CopyItems as an empty list and a clipboard change handler.
+        /// </summary>
         public MainPageViewModel()
         {
             if (CopyItems==null)
@@ -71,6 +77,11 @@ namespace CopyBase.Forms.ViewModels
             ClipboardMonitor.OnClipboardChange += new ClipboardMonitor.OnClipboardChangeEventHandler(ClipboardMonitor_OnClipboardChange);
         }
 
+        /// <summary>
+        /// Handle clipboard changes.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="formats"></param>
         void ClipboardMonitor_OnClipboardChange(System.Windows.Forms.DataObject data, string[] formats)
         {
             System.Windows.Application.Current.Dispatcher.Invoke(
@@ -83,6 +94,10 @@ namespace CopyBase.Forms.ViewModels
                 });
         }
 
+        /// <summary>
+        /// Add an item from clipboard to the list.
+        /// </summary>
+        /// <param name="it"></param>
         private void AddToList(CopyItem it)
         {
             try
@@ -107,6 +122,9 @@ namespace CopyBase.Forms.ViewModels
             }
         }
 
+        /// <summary>
+        /// Handle click on a list item by sending the selected item to the clipboard.
+        /// </summary>
         internal void Selection_Clicked()
         {
             try
@@ -120,6 +138,11 @@ namespace CopyBase.Forms.ViewModels
             }
         }
 
+        /// <summary>
+        /// Delete item from the list.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="e"></param>
         internal void DeleteItem(object item, EventArgs e)
         {
             try
@@ -136,6 +159,9 @@ namespace CopyBase.Forms.ViewModels
             }
         }
 
+        /// <summary>
+        /// Empty the item list.
+        /// </summary>
         internal void ListClear()
         {
             CopyItems.Clear();
@@ -194,7 +220,6 @@ namespace CopyBase.Forms.ViewModels
             info.cbSize = Marshal.SizeOf(info);
             if (!GetGUIThreadInfo(0, ref info))
                 throw new Win32Exception();
-            //System.Windows.Forms.MessageBox.Show("active " + info.hwndActive + " focus " + info.hwndFocus);
             return info.hwndFocus;
         }
 

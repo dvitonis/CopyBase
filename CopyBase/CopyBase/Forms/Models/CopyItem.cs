@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace CopyBase.Forms.Models
 {
+    /// <summary>
+    /// Class to store a clipboard object.
+    /// </summary>
     public class CopyItem:INotifyPropertyChanged
     {
         public const string CopyBaseItemIdentifier = "CopyBaseItem";
@@ -23,9 +26,7 @@ namespace CopyBase.Forms.Models
         private DataObject item;
         #endregion
 
-        /*
-         * Only getter
-         */ 
+        // Only getter.
         public Guid ID
         {
             get
@@ -84,6 +85,9 @@ namespace CopyBase.Forms.Models
             }
         }
 
+        /// <summary>
+        /// Textual representation of a clipboard object.
+        /// </summary>
         public String Entry
         {
             get
@@ -120,9 +124,10 @@ namespace CopyBase.Forms.Models
             }
         }
 
-        /*
-         * Constructor
-         */
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="D"></param>
         public CopyItem(String D)
         {
             id = Guid.NewGuid();
@@ -130,6 +135,11 @@ namespace CopyBase.Forms.Models
             Entry = D;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="O"></param>
+        /// <param name="formats"></param>
         public CopyItem(DataObject O, string[] formats)
         {
             id = Guid.NewGuid();
@@ -139,11 +149,19 @@ namespace CopyBase.Forms.Models
             Entry = Data;
         }
 
+        /// <summary>
+        /// Check if clipboard contains an object inserted by CopyBase.
+        /// </summary>
+        /// <returns></returns>
         public bool IsCopyBaseItem()
         {
             return this.Formats.Contains(CopyItem.CopyBaseItemIdentifier);
         }
 
+        /// <summary>
+        /// Extract text from cliboard object for textual representation.
+        /// </summary>
+        /// <returns></returns>
         private string ExtractText()
         {
             if (this.Item.ContainsText())
@@ -184,6 +202,11 @@ namespace CopyBase.Forms.Models
             return this.Item.ToString();
         }
 
+        /// <summary>
+        /// Parse file names to textual representation.
+        /// </summary>
+        /// <param name="fileNames"></param>
+        /// <returns></returns>
         private string FileNamesToString(string[] fileNames)
         {
             var amount = fileNames.Length;

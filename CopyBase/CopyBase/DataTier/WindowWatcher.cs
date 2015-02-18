@@ -6,6 +6,9 @@ using System.Text;
 
 namespace CopyBase.DataTier
 {
+    /// <summary>
+    /// Track the active applications.
+    /// </summary>
     public static class WindowWatcher
     {
             [DllImport("user32.dll")]

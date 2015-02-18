@@ -15,10 +15,15 @@ namespace CopyBase
         public App()
         {
             AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(MyHandler);
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(ExceptionLogger);
         }
 
-        static void MyHandler(object sender, UnhandledExceptionEventArgs args)
+        /// <summary>
+        /// UnhandledExceptionEventHandler for logging exeptions to file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        static void ExceptionLogger(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
 

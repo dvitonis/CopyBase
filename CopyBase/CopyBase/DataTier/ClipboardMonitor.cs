@@ -7,11 +7,17 @@ using System.Timers;
 
 namespace CopyBase.DataTier
 {
+    /// <summary>
+    /// Class to control Clipboard watcher and adding to clipboard.
+    /// </summary>
     public static class ClipboardMonitor
     {
         public delegate void OnClipboardChangeEventHandler(DataObject data, string[] formats);
         public static event OnClipboardChangeEventHandler OnClipboardChange;
 
+        /// <summary>
+        /// Start clipboard watching.
+        /// </summary>
         public static void Start()
         {
 
@@ -23,12 +29,19 @@ namespace CopyBase.DataTier
             };
         }
 
+        /// <summary>
+        /// Stop cliboard watching.
+        /// </summary>
         public static void Stop()
         {
             OnClipboardChange = null;
             ClipboardWatcher.Stop();
         }
 
+        /// <summary>
+        /// Add an item to cliboard.
+        /// </summary>
+        /// <param name="item"></param>
         public static void AddToClipboard(CopyItem item)
         {
             try
@@ -50,12 +63,18 @@ namespace CopyBase.DataTier
             }
         }
 
+        /// <summary>
+        /// Initialize a form to watch the changes in the clipboard.
+        /// </summary>
         class ClipboardWatcher : Form
         {
             private System.Timers.Timer timer = new System.Timers.Timer(clipIdle);
             private ClipboardState clipState = ClipboardState.Ready;
             const int clipIdle = 100;
 
+            /// <summary>
+            /// Constructor, start the timer.
+            /// </summary>
             ClipboardWatcher()
             {
                 timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
@@ -94,7 +113,7 @@ namespace CopyBase.DataTier
             // start listening
             public static void Start()
             {
-                // we can only have one instance if this class
+                // we can only have one instance of this class
                 if (mInstance != null)
                     return;
 
